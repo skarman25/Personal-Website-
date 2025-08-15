@@ -158,14 +158,14 @@ p {
     width: 100%;
 }
 
-.donate-btn {
+.portfolio-btn {
     background: var(--secondary-color);
     color: var(--text-white);
     padding: 8px 20px;
     border-radius: var(--border-radius);
 }
 
-.donate-btn:hover {
+.portfolio-btn:hover {
     background: #d91e32;
     color: var(--text-white);
 }

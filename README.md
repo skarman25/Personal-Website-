@@ -1,38 +1,38 @@
-# Skarman Political Campaign Website
+# SK Arman Hossain - Personal CV Website
 
-A modern, professional political campaign website designed for political work in Bangladesh. This website serves as a comprehensive platform for political campaigning with a focus on user engagement, donation collection, and volunteer recruitment.
+A modern, professional personal CV and portfolio website designed to showcase SK Arman Hossain's expertise in policy analysis, research, and digital content creation. This website serves as a comprehensive platform for personal branding and career presentation in the field of public policy and international relations.
 
 ## 🌟 Features
 
 ### Main Website (`index.html`)
 - **Responsive Design**: Mobile-first approach with modern UI/UX
-- **Hero Section**: Compelling call-to-action with campaign messaging
-- **About Section**: Candidate information and core values
-- **Vision Section**: Four key policy areas with visual cards
-- **Key Issues**: Detailed breakdown of campaign priorities
+- **Hero Section**: Professional introduction with tagline "Bridging Policy and Business to Drive Scalable Growth and Sustainable Development"
+- **About Section**: Personal summary focusing on policy analysis and sustainable development
+- **Experience Section**: Career highlights in podcast creation and research
+- **Skills Section**: Technical and professional competencies in policy analysis
 - **Contact Form**: Interactive contact form with validation
-- **Newsletter Signup**: Email subscription for campaign updates
+- **Newsletter Signup**: Email subscription for professional updates
 
-### Volunteer Page (`volunteer.html`)
-- **Volunteer Application Form**: Comprehensive volunteer signup
-- **Multiple Roles**: Various volunteer opportunities (canvassing, phone banking, events, etc.)
-- **Availability Selection**: Flexible scheduling options
-- **Statistics Display**: Campaign volunteer metrics
-- **Interactive UI**: Clickable options and form validation
+### Portfolio Page (`portfolio.html`)
+- **Project Showcase**: Interactive portfolio with filtering options
+- **Multiple Categories**: Research, podcast, policy analysis, digital content
+- **Project Details**: Comprehensive project descriptions including OG Talks Podcast and research work
+- **Filtering System**: Category-based project filtering
+- **Statistics Display**: Professional metrics (research projects, podcast episodes, experience)
 
-### Donation Page (`donate.html`)
-- **Multiple Donation Tiers**: Pre-set amounts with descriptions
-- **Custom Amount Input**: Flexible donation amounts
-- **Payment Methods**: Support for bKash, Nagad, Rocket, and bank transfers
-- **Recurring Donations**: Monthly subscription option
-- **Progress Tracking**: Visual fundraising goal progress
-- **Secure Forms**: Professional donation collection system
+### Resume Page (`resume.html`)
+- **Professional Resume**: Comprehensive CV layout
+- **Work Experience**: Detailed job history at OG Talks Podcast and Global Policy Research
+- **Education**: Master of Public Policy at University of Erfurt and Bachelor from University of Malaya
+- **Skills Matrix**: Organized digital skills and competencies
+- **Language Skills**: Detailed language proficiency table (English C1, German B1-B2, Bangla native)
+- **Download Options**: PDF and print-friendly versions
 
 ## 🎨 Design Features
 
 ### Color Scheme
-- **Primary**: Bangladesh Green (#006a4e)
-- **Secondary**: Bangladesh Red (#f42a41)
+- **Primary**: Professional Green (#006a4e)
+- **Secondary**: Professional Red (#f42a41)
 - **Accent**: Gold (#ffd700)
 - **Neutral**: Professional grays and whites
 
@@ -91,7 +91,7 @@ The website is fully responsive and optimized for:
 ### Customization
 - **Colors**: Modify CSS custom properties in `styles.css`
 - **Content**: Update text content in HTML files
-- **Images**: Replace placeholder elements with actual campaign photos
+- **Images**: Replace placeholder elements with actual photos
 - **Contact Info**: Update contact details and social media links
 
 ## 📋 File Structure
@@ -99,36 +99,36 @@ The website is fully responsive and optimized for:
 ```
 Personal-Website-/
 ├── index.html          # Main homepage
-├── volunteer.html      # Volunteer signup page
-├── donate.html         # Donation page
+├── portfolio.html      # Portfolio showcase page
+├── resume.html         # Professional resume page
 ├── styles.css          # Main stylesheet
 ├── script.js           # JavaScript functionality
 └── README.md           # Project documentation
 ```
 
-## 🎯 Campaign Features
+## 🎯 Professional Features
 
-### Political Campaign Essentials
+### CV Essentials
 - **Professional Branding**: Consistent visual identity
-- **Clear Messaging**: Focused campaign communication
+- **Clear Messaging**: Focused professional communication
 - **Call-to-Actions**: Multiple engagement opportunities
 - **Trust Building**: Professional design and clear information
 - **Accessibility**: Usable across all devices and users
 
-### Engagement Tools
-- **Volunteer Recruitment**: Comprehensive volunteer management
-- **Donation Collection**: Professional fundraising platform
+### Portfolio Tools
+- **Project Showcase**: Comprehensive project management
+- **Skill Demonstration**: Professional competency display
 - **Contact Forms**: Easy communication channels
-- **Newsletter Signup**: Campaign update distribution
-- **Social Media Integration**: Social sharing capabilities
+- **Newsletter Signup**: Professional update distribution
+- **Social Media Integration**: Professional networking capabilities
 
-## 🌍 Bangladesh-Specific Features
+## 🌍 Professional Focus
 
-- **Local Payment Methods**: bKash, Nagad, Rocket support
-- **Bangladeshi Districts**: Comprehensive district selection
-- **Local Currency**: BDT (৳) display throughout
-- **Cultural Sensitivity**: Appropriate content and messaging
-- **Local Language Support**: Ready for Bengali content addition
+- **Policy Analysis**: Specialization in public policy and international relations
+- **Research Skills**: Experience in socio-political research and climate change analysis
+- **Digital Content**: Podcast creation and social media management
+- **Academic Excellence**: Master's student at University of Erfurt
+- **International Experience**: Background from University of Malaya
 
 ## 🔒 Security and Privacy
 
@@ -140,45 +140,66 @@ Personal-Website-/
 ## 📈 Future Enhancements
 
 ### Potential Additions
-- **Events Calendar**: Campaign event management
-- **Blog/News Section**: Campaign updates and articles
-- **Photo Gallery**: Campaign event photos
-- **Video Integration**: Campaign videos and speeches
-- **Multi-language Support**: Bengali language version
-- **Analytics Integration**: Campaign performance tracking
+- **Blog Section**: Policy insights and research articles
+- **Testimonials**: Academic and professional recommendations
+- **Video Introduction**: Personal video presentation
+- **Multi-language Support**: German and Bangla versions
+- **Analytics Integration**: Professional performance tracking
 
 ### Technical Improvements
 - **Backend Integration**: Database and user management
-- **Payment Processing**: Real payment gateway integration
-- **Email Marketing**: Automated email campaigns
-- **Social Media API**: Direct social media integration
+- **CMS Integration**: Content management system
+- **Email Marketing**: Automated professional communications
+- **Social Media API**: Direct professional networking integration
 - **SEO Optimization**: Search engine optimization
 
-## 🤝 Contributing
+## 🤝 Customization
 
-This website is designed as a complete political campaign platform. To customize for your campaign:
+This website is designed as a complete personal CV platform. To customize for your professional profile:
 
-1. **Update Content**: Replace placeholder text with your campaign information
+1. **Update Content**: Replace placeholder text with your information
 2. **Modify Colors**: Adjust the color scheme to match your brand
 3. **Add Images**: Replace placeholder elements with actual photos
 4. **Update Contact Info**: Modify contact details and social media links
-5. **Customize Forms**: Adjust form fields based on your needs
+5. **Customize Portfolio**: Adjust project examples and skills
 
 ## 📞 Support
 
-For questions about customizing this website for your political campaign:
+For questions about customizing this website for your professional profile:
 
 - Review the code comments for guidance
 - Modify CSS custom properties for easy styling changes
-- Update HTML content to reflect your campaign message
+- Update HTML content to reflect your professional experience
 - Test thoroughly across different devices and browsers
 
 ## 📄 License
 
-This project is provided as-is for political campaign use. Please ensure compliance with local campaign finance and political advertising laws in your jurisdiction.
+This project is provided as-is for personal and professional use. Please ensure compliance with local professional standards and regulations in your jurisdiction.
 
 ---
 
-**Built for Political Campaigns in Bangladesh** 🇧🇩
+**Built for Professional Excellence** 💼
 
-*Professional, Modern, and Effective Political Campaign Websites*
+*Modern, Professional, and Effective Personal CV Websites*
+
+## 👤 About SK Arman Hossain
+
+**Current Position**: Master of Public Policy Student at Willy Brandt School of Public Policy, University of Erfurt, Germany
+
+**Professional Focus**: 
+- Policy Analysis and Research
+- Digital Content Creation (Podcast)
+- Climate Change and Socio-political Research
+- International Relations and Strategic Studies
+
+**Key Experience**:
+- **OG Talks Podcast**: Policy analysis and human rights discussions (2022-Current)
+- **Global Policy Research**: Research Associate focusing on democratic processes and climate change (2023-2024)
+
+**Education**:
+- **Master of Public Policy**: University of Erfurt, Germany (2024-Current)
+- **Bachelor of Arts**: International and Strategic Studies, University of Malaya, Malaysia (2015-2020)
+
+**Languages**: English (C1), German (B1-B2), Bangla (Native)
+
+**Location**: Erfurt, Germany
