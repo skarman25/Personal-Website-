@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Skarman Campaign</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .events-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #005a42 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: var(--text-white);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .event-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .event-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            position: relative;
+        }
+        
+        .event-image.placeholder {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .event-image.placeholder i {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+        
+        .event-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .event-content {
+            padding: 1.5rem;
+        }
+        
+        .event-title {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .event-location {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .event-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .event-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .event-attendees {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .event-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .upcoming-events {
+            background: var(--bg-light);
+            padding: 4rem 0;
+        }
+        
+        .past-events {
+            background: var(--bg-white);
+            padding: 4rem 0;
+        }
+        
+        .event-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--bg-white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+        
+        .event-calendar {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 3rem 0;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .calendar-nav button {
+            background: var(--primary-color);
+            color: var(--text-white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calendar-nav button:hover {
+            background: #005a42;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .calendar-day {
+            padding: 1rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calendar-day:hover {
+            background: var(--bg-light);
+        }
+        
+        .calendar-day.has-event {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+        
+        .calendar-day.today {
+            background: var(--accent-color);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .calendar-day.other-month {
+            color: #ccc;
+        }
+        
+        .event-countdown {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .countdown-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                font-size: 0.8rem;
+            }
+            
+            .calendar-day {
+                padding: 0.5rem;
+            }
+            
+            .countdown-timer {
+                gap: 1rem;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Skarman</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#vision" class="nav-link">Vision</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#issues" class="nav-link">Key Issues</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="volunteer.html" class="nav-link">Volunteer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="donate.html" class="nav-link donate-btn">Donate</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="events-hero">
+        <div class="container">
+            <h1>Campaign Events</h1>
+            <p>Join us at rallies, town halls, and community meetings across Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- Event Countdown -->
+    <section class="event-countdown">
+        <div class="container">
+            <h2>Next Major Event</h2>
+            <p>Dhaka Central Rally - Join thousands of supporters</p>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">15</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">08</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">30</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+            <a href="#upcoming" class="btn btn-primary">View All Events</a>
+        </div>
+    </section>
+
+    <!-- Event Filters -->
+    <section class="event-filters-section">
+        <div class="container">
+            <div class="event-filters">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="rallies">Rallies</button>
+                <button class="filter-btn" data-filter="townhalls">Town Halls</button>
+                <button class="filter-btn" data-filter="meetings">Community Meetings</button>
+                <button class="filter-btn" data-filter="volunteer">Volunteer Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section id="upcoming" class="upcoming-events">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <p>Mark your calendar and join us at these important campaign events</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card" data-category="rallies">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="event-date">Dec 15</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Dhaka Central Rally</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Dhaka Central Stadium, Dhaka
+                        </div>
+                        <p class="event-description">Join thousands of supporters for our biggest rally of the campaign. Special guest speakers, music, and a powerful message about building a better Bangladesh.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                6:00 PM - 9:00 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                5,000+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-category="townhalls">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-comments"></i>
+                        <div class="event-date">Dec 18</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Chittagong Town Hall</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Chittagong City Hall, Chittagong
+                        </div>
+                        <p class="event-description">An open forum where citizens can ask questions directly about our policies and vision for Chittagong's future development.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                7:00 PM - 9:00 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                300+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-category="meetings">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-handshake"></i>
+                        <div class="event-date">Dec 20</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Rajshahi Community Meeting</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Rajshahi Community Center, Rajshahi
+                        </div>
+                        <p class="event-description">Intimate community gathering to discuss local issues and how our policies will directly benefit Rajshahi residents.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                6:30 PM - 8:00 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                150+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-category="volunteer">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-hands-helping"></i>
+                        <div class="event-date">Dec 22</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Volunteer Training Session</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Campaign Office, Dhaka
+                        </div>
+                        <p class="event-description">Essential training for new volunteers. Learn about canvassing techniques, phone banking, and campaign messaging.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                2:00 PM - 5:00 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                100+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-category="rallies">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="event-date">Dec 25</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Sylhet Youth Rally</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Sylhet University Campus, Sylhet
+                        </div>
+                        <p class="event-description">Special rally focused on youth issues, education, and job creation. Music, speakers, and networking opportunities.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                5:00 PM - 8:00 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                2,000+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-category="meetings">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-handshake"></i>
+                        <div class="event-date">Dec 28</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Khulna Business Forum</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Khulna Chamber of Commerce, Khulna
+                        </div>
+                        <p class="event-description">Business leaders discuss economic policies, investment opportunities, and how to create jobs in Khulna region.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                6:00 PM - 8:30 PM
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                200+ expected
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary btn-small">RSVP</a>
+                            <a href="#" class="btn btn-outline btn-small">Share</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Calendar -->
+    <section class="event-calendar-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Event Calendar</h2>
+                <p>View all events in an easy-to-use calendar format</p>
+            </div>
+            
+            <div class="event-calendar">
+                <div class="calendar-header">
+                    <h3 id="currentMonth">December 2024</h3>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events -->
+    <section class="past-events">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Events</h2>
+                <p>Highlights from our recent campaign activities</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="event-date">Dec 10</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Barisal Community Outreach</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Barisal, Bangladesh
+                        </div>
+                        <p class="event-description">Successfully connected with over 500 local residents, discussing their concerns about healthcare access and education quality.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                Completed
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                500+ attended
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-outline btn-small">View Photos</a>
+                            <a href="#" class="btn btn-outline btn-small">Read Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image placeholder">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="event-date">Dec 8</div>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Rangpur Youth Conference</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Rangpur, Bangladesh
+                        </div>
+                        <p class="event-description">Engaged with 300+ young voters about digital transformation, job opportunities, and environmental protection policies.</p>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="fas fa-clock"></i>
+                                Completed
+                            </div>
+                            <div class="event-attendees">
+                                <i class="fas fa-users"></i>
+                                300+ attended
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-outline btn-small">View Photos</a>
+                            <a href="#" class="btn btn-outline btn-small">Read Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Skarman</h3>
+                    <p>Building a better Bangladesh for all citizens.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#vision">Vision</a></li>
+                        <li><a href="index.html#issues">Issues</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our campaign progress.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Skarman Campaign. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Events page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const eventCards = document.querySelectorAll('.event-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter events
+                    eventCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Countdown timer
+            function updateCountdown() {
+                const now = new Date();
+                const eventDate = new Date('2024-12-15T18:00:00');
+                const diff = eventDate - now;
+                
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('days').textContent = days;
+                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                }
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Calendar functionality
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            
+            function renderCalendar() {
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                                  'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                document.getElementById('currentMonth').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+                
+                const firstDay = new Date(currentYear, currentMonth, 1);
+                const lastDay = new Date(currentYear, currentMonth + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(startDate.getDate() - firstDay.getDay());
+                
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+                
+                // Add day headers
+                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day';
+                    dayHeader.textContent = day;
+                    dayHeader.style.fontWeight = '600';
+                    dayHeader.style.color = var(--primary-color);
+                    calendarGrid.appendChild(dayHeader);
+                });
+                
+                // Add calendar days
+                for (let i = 0; i < 42; i++) {
+                    const day = new Date(startDate);
+                    day.setDate(startDate.getDate() + i);
+                    
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = day.getDate();
+                    
+                    if (day.getMonth() !== currentMonth) {
+                        dayElement.classList.add('other-month');
+                    }
+                    
+                    if (day.toDateString() === currentDate.toDateString()) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    // Add event indicators for specific dates
+                    const eventDates = ['2024-12-15', '2024-12-18', '2024-12-20', '2024-12-22', '2024-12-25', '2024-12-28'];
+                    const dateString = day.toISOString().split('T')[0];
+                    if (eventDates.includes(dateString)) {
+                        dayElement.classList.add('has-event');
+                    }
+                    
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+            
+            // Calendar navigation
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar();
+            });
+            
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+            
+            // Initialize calendar
+            renderCalendar();
+            
+            // RSVP functionality
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                if (btn.textContent === 'RSVP') {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const eventTitle = this.closest('.event-card').querySelector('.event-title').textContent;
+                        showNotification(`Thank you for RSVPing to "${eventTitle}"! We'll send you a confirmation email.`, 'success');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

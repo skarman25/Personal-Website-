@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - Skarman Campaign</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .volunteer-hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #d91e32 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: var(--text-white);
+        }
+        
+        .volunteer-form {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .volunteer-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .volunteer-option {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .volunteer-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .volunteer-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(0, 106, 78, 0.1);
+        }
+        
+        .volunteer-option i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .availability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .availability-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .availability-item:hover {
+            border-color: var(--secondary-color);
+        }
+        
+        .availability-item.selected {
+            border-color: var(--secondary-color);
+            background: rgba(244, 42, 65, 0.1);
+        }
+        
+        .volunteer-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .volunteer-stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .volunteer-stat h3 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .volunteer-stat p {
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .volunteer-form {
+                padding: 2rem;
+                margin: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Skarman</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#vision" class="nav-link">Vision</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#issues" class="nav-link">Key Issues</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="donate.html" class="nav-link donate-btn">Donate</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="volunteer-hero">
+        <div class="container">
+            <h1>Join Our Campaign Team</h1>
+            <p>Your time and energy can make a real difference in building a better Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- Volunteer Stats -->
+    <section class="volunteer-stats">
+        <div class="container">
+            <div class="volunteer-stat">
+                <h3>500+</h3>
+                <p>Active Volunteers</p>
+            </div>
+            <div class="volunteer-stat">
+                <h3>25</h3>
+                <p>Districts Covered</p>
+            </div>
+            <div class="volunteer-stat">
+                <h3>1000+</h3>
+                <p>Hours Contributed</p>
+            </div>
+            <div class="volunteer-stat">
+                <h3>50+</h3>
+                <p>Events Organized</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Form -->
+    <section class="volunteer-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Become a Volunteer</h2>
+                <p>Fill out the form below to join our team and help us create positive change</p>
+            </div>
+            
+            <form class="volunteer-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="district">District *</label>
+                        <select id="district" required>
+                            <option value="">Select District</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="chittagong">Chittagong</option>
+                            <option value="rajshahi">Rajshahi</option>
+                            <option value="khulna">Khulna</option>
+                            <option value="barisal">Barisal</option>
+                            <option value="sylhet">Sylhet</option>
+                            <option value="rangpur">Rangpur</option>
+                            <option value="mymensingh">Mymensingh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age Group *</label>
+                        <select id="age" required>
+                            <option value="">Select Age Group</option>
+                            <option value="18-25">18-25</option>
+                            <option value="26-35">26-35</option>
+                            <option value="36-45">36-45</option>
+                            <option value="46-55">46-55</option>
+                            <option value="55+">55+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>How would you like to help? *</label>
+                    <div class="volunteer-options">
+                        <div class="volunteer-option" data-value="canvassing">
+                            <i class="fas fa-door-open"></i>
+                            <h4>Door-to-Door Canvassing</h4>
+                            <p>Help us reach voters in your community</p>
+                        </div>
+                        <div class="volunteer-option" data-value="phone-banking">
+                            <i class="fas fa-phone"></i>
+                            <h4>Phone Banking</h4>
+                            <p>Make calls to potential supporters</p>
+                        </div>
+                        <div class="volunteer-option" data-value="events">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h4>Event Organization</h4>
+                            <p>Help plan and run campaign events</p>
+                        </div>
+                        <div class="volunteer-option" data-value="social-media">
+                            <i class="fas fa-share-alt"></i>
+                            <h4>Social Media</h4>
+                            <p>Share our message online</p>
+                        </div>
+                        <div class="volunteer-option" data-value="data-entry">
+                            <i class="fas fa-database"></i>
+                            <h4>Data Entry</h4>
+                            <p>Help organize campaign information</p>
+                        </div>
+                        <div class="volunteer-option" data-value="transportation">
+                            <i class="fas fa-car"></i>
+                            <h4>Transportation</h4>
+                            <p>Help with logistics and transport</p>
+                        </div>
+                    </div>
+                    <input type="hidden" id="volunteerType" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>When are you available? *</label>
+                    <div class="availability-grid">
+                        <div class="availability-item" data-value="weekday-morning">Weekday Mornings</div>
+                        <div class="availability-item" data-value="weekday-afternoon">Weekday Afternoons</div>
+                        <div class="availability-item" data-value="weekday-evening">Weekday Evenings</div>
+                        <div class="availability-item" data-value="weekend-morning">Weekend Mornings</div>
+                        <div class="availability-item" data-value="weekend-afternoon">Weekend Afternoons</div>
+                        <div class="availability-item" data-value="weekend-evening">Weekend Evenings</div>
+                    </div>
+                    <input type="hidden" id="availability" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Previous Campaign Experience</label>
+                    <textarea id="experience" rows="3" placeholder="Tell us about any previous political or community involvement..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivation">Why do you want to volunteer? *</label>
+                    <textarea id="motivation" rows="3" required placeholder="Share your motivation for joining our campaign..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        I agree to receive campaign updates and communications
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        I confirm that all information provided is accurate
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                    Submit Volunteer Application
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Skarman</h3>
+                    <p>Building a better Bangladesh for all citizens.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#vision">Vision</a></li>
+                        <li><a href="index.html#issues">Issues</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="events.html">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our campaign progress.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Skarman Campaign. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Volunteer form specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Volunteer option selection
+            document.querySelectorAll('.volunteer-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.volunteer-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    document.getElementById('volunteerType').value = this.dataset.value;
+                });
+            });
+            
+            // Availability selection
+            document.querySelectorAll('.availability-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.availability-item').forEach(avail => avail.classList.remove('selected'));
+                    this.classList.add('selected');
+                    document.getElementById('availability').value = this.dataset.value;
+                });
+            });
+            
+            // Form submission
+            document.querySelector('.volunteer-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                const requiredFields = this.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        isValid = false;
+                        field.style.borderColor = '#f44336';
+                    } else {
+                        field.style.borderColor = '#e1e5e9';
+                    }
+                });
+                
+                if (!isValid) {
+                    showNotification('Please fill in all required fields.', 'error');
+                    return;
+                }
+                
+                // Show success message
+                showNotification('Thank you for your volunteer application! We will contact you soon.', 'success');
+                this.reset();
+                
+                // Reset selections
+                document.querySelectorAll('.volunteer-option, .availability-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
